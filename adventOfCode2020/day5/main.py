@@ -1,7 +1,7 @@
 import math
 f = open("input.txt", "r")
 check = 0
-
+allIds = []
 highest = 0
 def id(number, column):
     return number*8+column
@@ -37,7 +37,17 @@ for x in f:
         elif letter == "R":
             columnFirst = math.ceil((columnFirst + columnLast)/2)
     if (id(row, column) > highest): highest = id(row,column)
-    print(int(row), int(column))
-    print(id(row,column))
+    allIds.append(int(id(row,column)))
 
+
+def find_missing(lst): 
+    return [x for x in range(lst[0], lst[-1]+1)  
+                               if x not in lst]
+
+allIds.sort()
+
+print(find_missing(allIds))
+    
+
+print(allIds)
 print(highest)
