@@ -41,49 +41,48 @@ preamble = 25
 
 def invalid(arr):
     for count, number in enumerate(arr, start=0): # Doesn't take into account last
-        # print(count)
         if (count < preamble): continue
         checkArr = arr[count-preamble: count]
         results = pair_sum(checkArr)
         if number not in results:
             print("not", number)
             break
-        # print(number)
 
-# invalid(arr)
+def subArraySum(arr, n, sum): 
+      
+    # Pick a starting  
+    # point 
+    for i in range(n): 
+        curr_sum = arr[i] 
+      
+        # try all subarrays
+        # starting with 'i'
+        j = i + 1
+        while j <= n: 
+          
+            if curr_sum == sum: 
+                print ("Sum found between") 
+                print("indexes % d and % d"%( arr[i], arr[j-1])) 
+                print("indexes % d and % d"%( i, j-1)) 
+                
+                print("max", max(arr[i:j-1]))
+                print("min", min(arr[i:j-1]))
+                print(max(arr[i:j-1])+min(arr[i:j-1]))
+                return 1
+                  
+            if curr_sum > sum or j == n: 
+                break
+              
+            curr_sum = curr_sum + arr[j] 
+            j += 1
+  
+    print ("No subarray found") 
+    return 0
 
-# def doStuff():
-#     for preamble, count in enumerate(arr):
-#         if preamble + 1 >= len(arr): break
-#         newSum = arr[preamble-24: preamble +1]
-#         sums.append(newSum)
-#         preamble +=1
-    
-# def modifyArr():
-#     i = 0
-#     returnArr = []
-#     for i in range(i, len(arr)):
-#         returnArr.append(pair_sum(sums[i]))
-#     return returnArr   
 
-
-# doStuff()
-# modifyArr()
-
-# def doCheck(fullSums):
-#     print(fullSums)
-#     for i in range(preamble , len(arr)):
-#         if (arr[i] not in  fullSums[i]):
-#             print(sums[i])
-#             print("not", arr[i], i)
-#             break
-            
-
-
-# fullArr = modifyArr()
-
-# doCheck(fullArr)
-
+invalid(arr)
+subArraySum(arr, len(arr), 70639851)
+f.close()
     
 
 
