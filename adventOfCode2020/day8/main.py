@@ -29,18 +29,33 @@ def readFile(f):
 
 i = 0
 reading = readFile(f)
-print(reading)
-for line in reading:
-    print(i)
+
+def count():
+    jmps = []
+    nops = []
+    for line in reading:
+        cmd = line.split(" ")[0]
+        if (cmd == 'jmp'):
+            jmps.append(int(line.split(" ")[1]))
+        elif (cmd == 'nop'):
+            nops.append(int(line.split(" ")[1]))
+        elif (cmd == 'acc'):
+            jmps.append(1)
+    
+    return jmps
+
+
+    
+
+
+
+
+print(count())
+while(i not in visited or i > len(reading) -1):
+
     cmd = reading[i].split(" ")[0]
 
     value = int(reading[i].split(" ")[1])
-    print(value)
-
-    if (value < 0):
-        print("less than zero")
-
-  
 
     if i not in visited:
         if (cmd == 'nop'):
@@ -52,8 +67,12 @@ for line in reading:
             i += 1
             acc +=  value
         elif (cmd =='jmp'):
-            visited.append(i)
-            i += value
+            if (value == 42):
+                print("fortytwo")
+                continue
+            else:
+                visited.append(i)
+                i += value
 
 
             
@@ -61,4 +80,4 @@ for line in reading:
   
 
 
-print(acc, visited)
+print(acc)
